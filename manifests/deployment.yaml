@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: Machines-efficiency-prediction-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: Machines-efficiency-prediction-app
+  template:
+    metadata:
+      labels:
+        app: Machines-efficiency-prediction-app
+    spec:
+      containers:
+      - name: Machines-efficiency-prediction-app
+        image: 
+        ports:
+        - containerPort: 5000

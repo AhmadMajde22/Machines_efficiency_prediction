@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Machine Efficiency Prediction</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="title">Machine Efficiency Prediction</h1>
+    <form action="{{ url_for('predict') }}" method="post">
+      <div class="form-group">
+        <label for="operation_mode">Operation Mode</label>
+        <select id="operation_mode" name="operation_mode" required>
+          <option value="0">Active</option>
+          <option value="1">Idle</option>
+          <option value="2">Maintenance</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="temperature">Temperature (°C)</label>
+        <input type="number" step="0.01" id="temperature" name="temperature" required>
+      </div>
+      <div class="form-group">
+        <label for="vibration">Vibration (Hz)</label>
+        <input type="number" step="0.01" id="vibration" name="vibration" required>
+      </div>
+      <div class="form-group">
+        <label for="power_consumption">Power Consumption (kW)</label>
+        <input type="number" step="0.01" id="power_consumption" name="power_consumption" required>
+      </div>
+      <div class="form-group">
+        <label for="network_latency">Network Latency (ms)</label>
+        <input type="number" step="0.01" id="network_latency" name="network_latency" required>
+      </div>
+      <div class="form-group">
+        <label for="packet_loss">Packet Loss (%)</label>
+        <input type="number" step="0.01" id="packet_loss" name="packet_loss" required>
+      </div>
+      <div class="form-group">
+        <label for="quality_control">Quality Control Defect Rate (%)</label>
+        <input type="number" step="0.01" id="quality_control" name="quality_control" required>
+      </div>
+      <div class="form-group">
+        <label for="production_speed">Production Speed (units/hr)</label>
+        <input type="number" step="0.01" id="production_speed" name="production_speed" required>
+      </div>
+      <div class="form-group">
+        <label for="maintenance_score">Predictive Maintenance Score</label>
+        <input type="number" step="0.01" min="0" max="1" id="maintenance_score" name="maintenance_score" required>
+      </div>
+      <div class="form-group">
+        <label for="error_rate">Error Rate (%)</label>
+        <input type="number" step="0.01" id="error_rate" name="error_rate" required>
+      </div>
+      <div class="form-group">
+        <label for="year">Year</label>
+        <input type="number" id="year" name="year" value="2025" required>
+      </div>
+      <div class="form-group">
+        <label for="month">Month</label>
+        <input type="number" min="1" max="12" id="month" name="month" value="8" required>
+      </div>
+      <div class="form-group">
+        <label for="day">Day</label>
+        <input type="number" min="1" max="31" id="day" name="day" value="30" required>
+      </div>
+      <div class="form-group">
+        <label for="hour">Hour</label>
+        <input type="number" min="0" max="23" id="hour" name="hour" value="12" required>
+      </div>
+      <button type="submit" class="btn-predict">Predict Efficiency</button>
+    </form>
+    {% if prediction is not none %}
+    <div class="result">
+      <h3>Prediction Result</h3>
+      <p>The machine efficiency is predicted to be: <strong>{{ prediction }}</strong></p>
+    </div>
+    {% endif %}
+  </div>
+</body>
+
+</html>
