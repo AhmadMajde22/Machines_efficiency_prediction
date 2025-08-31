@@ -1,4 +1,4 @@
-FROM python:3.9
+FROM python:3.11
 
 WORKDIR /app
 
@@ -11,5 +11,3 @@ EXPOSE 5000
 ENV FLASK_APP=application.py
 
 CMD ["python","application.py"]
-
-
