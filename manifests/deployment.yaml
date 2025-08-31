@@ -6,14 +6,14 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      app: Machines-efficiency-prediction-app
+      app: machines-efficiency-prediction-app
   template:
     metadata:
       labels:
-        app: Machines-efficiency-prediction-app
+        app: machines-efficiency-prediction-app
     spec:
       containers:
-      - name: Machines-efficiency-prediction-app
+      - name: machines-efficiency-prediction-app
         image: ahmadmajde22/machines_efficiency_prediction:latest
         ports:
         - containerPort: 5000
