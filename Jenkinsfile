@@ -8,22 +8,24 @@ pipeline {
         stage('Checkout Github') {
             steps {
                 echo 'Checking out code from GitHub...'
-		checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github-token', url: 'https://github.com/AhmadMajde22/Machines_efficiency_prediction.git']])
-		}
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github-token', url: 'https://github.com/AhmadMajde22/Machines_efficiency_prediction.git']])
+            }
+        }
         stage('Build Docker Image') {
             steps {
                 script {
-                echo 'Building Docker image...'
-                dockerImage = docker.build("${DOCKER_HUB_REPO}:latest")
+                    echo 'Building Docker image...'
+                    dockerImage = docker.build("${DOCKER_HUB_REPO}:latest")
                 }
             }
         }
         stage('Push Image to DockerHub') {
             steps {
                 script {
-                echo "Pushing Docker image to DockerHub..."
-                docker.withRegistry('https://registry.hub.docker.com', "${DOCKER_HUB_CREDENTIALS}") {
-                    dockerImage.push('latest')
+                    echo "Pushing Docker image to DockerHub..."
+                    docker.withRegistry('https://registry.hub.docker.com', "${DOCKER_HUB_CREDENTIALS}") {
+                        dockerImage.push('latest')
+                    }
                 }
             }
         }
