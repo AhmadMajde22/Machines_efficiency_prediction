@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: Machines-efficiency-prediction-app
-        image: 
+        image: ahmadmajde22/machines_efficiency_prediction:latest
         ports:
         - containerPort: 5000
